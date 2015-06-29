@@ -1,0 +1,17 @@
+.workouts {
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+.wlink:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.nextbtn {
+    float: right;
+}
+
+.pagenr {
+    text-align: center;
+}

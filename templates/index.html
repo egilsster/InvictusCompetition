@@ -2,77 +2,75 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <title>Invictus Competition</title>
+<meta charset="utf-8">
+<title>Invictus Competition</title>
 
-    <link href="../static/bootstrap.min.css" rel="stylesheet" media="screen">
-    <script src="../static/jquery-2.1.4.min.js"></script>
-    <script src="../static/bootstrap.min.js"></script>
-    <script src="../static/script.js"></script>
+<link href="../static/bootstrap.min.css" rel="stylesheet" media="screen">
+<script src="../static/jquery-2.1.4.min.js"></script>
+<script src="../static/bootstrap.min.js"></script>
+<script src="../static/script.js"></script>
 
-    <link href="../static/style.css" rel="stylesheet">
+<link href="../static/style.css" rel="stylesheet">
 </head>
 
 <body>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/">CrossFit Invictus</a>
-            </div>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">CrossFit Invictus</a>
+        </div>
 
-            <!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
                     <li><a href="#">Link</a></li>
                 </ul>
             </div> -->
-        </div>
-    </nav>
+    </div>
+</nav>
 
-    <div class="container-fluid workouts">
-        <div class="container-fluid workouts">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Competition Workouts</h3>
+<div class="container-fluid">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Competition Workouts</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for item in result %}
+                <tr>
+                    <td>
+                        <a class="wlink" href="/workout/{{ item }}">{{ item }}</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="col-xs-4">
+                    {% if paging_left %}
+                    <button type="button" id="prev" onclick="change_page('prev')" class="btn btn-primary">Prev</button>
+                    {% endif %}
                 </div>
-                <div class="panel-body">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for item in result %}
-                            <tr>
-                                <td>
-                                    <a class="wlink" href="/workout/{{ item }}">{{ item }}</a>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                    <div class="row">
-                        <div class="col-xs-4">
-                            {% if paging_left %}
-                            <button type="button" id="prev" onclick="change_page('prev')" class="btn btn-primary">Prev</button>
-                            {% endif %}
-                        </div>
-                        <div class="col-xs-4">
-                            <p id="pagenr" class="pagenr">
-                                {{ page }}
-                            </p>
-                        </div>
-                        <div class="col-xs-4">
-                          {% if paging_right %}
-                          <button type="button" id="next" onclick="change_page('next')" class="btn btn-primary nextbtn">Next</button>
-                          {% endif %}
-                        </div>
-                    </div>
+                <div class="col-xs-4">
+                    <p id="pagenr" class="pagenr">
+                    {{ page }}
+                    </p>
+                </div>
+                <div class="col-xs-4">
+                    {% if paging_right %}
+                    <button type="button" id="next" onclick="change_page('next')" class="btn btn-primary nextbtn">Next</button>
+                    {% endif %}
                 </div>
             </div>
         </div>
     </div>
+</div>
 </body>
 
 </html>

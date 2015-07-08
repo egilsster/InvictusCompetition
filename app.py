@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: iso-8859-15 -*-
 import pdb
 import re
 import requests
@@ -29,12 +31,13 @@ This is linked with the title of the workout which is the date.
 '''
 def generate_list(url):
     data = load_url(url)
-    soup = BeautifulSoup(data)
+    soup = BeautifulSoup(data, "html.parser")
     hrefs = soup('a', rel='bookmark')
     entries = []
 
     for x in hrefs:
-        title = x.text[:x.text.find(' – ')]
+        title = x.text[:x.text.find('Competition')-3]
+        #title = x.text
         link = x['href']
         workouts[title] = link
         entries.append(title)
@@ -72,4 +75,4 @@ def view_workout(wdate):
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0',port=5001,debug=True)
+    app.run()

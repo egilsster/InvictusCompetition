@@ -1,15 +1,14 @@
 function change_page(direction) {
-    var item = document.getElementById('pagenr').innerHTML;
-    var pagenumber = parseInt(item);
+    var item = document.getElementById('pager').innerHTML;
+    var page_number = parseInt(item);
     var currentURL = window.location.href;
 
     if (direction === 'next') {
-        pagenumber++;
+        page_number++;
     } else if (direction === 'prev') {
-        pagenumber--;
+        page_number--;
     }
 
     var idx = currentURL.indexOf("page/");
-    var url = currentURL.substring(0, idx) + "page/" + pagenumber;
-    window.location.href = url;
+    window.location.href = currentURL.substring(0, idx) + "page/" + page_number;
 }

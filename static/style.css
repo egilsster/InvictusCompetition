@@ -1,3 +1,14 @@
+@media screen and (min-width: 600px) {
+    .workout {
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+}
+
+body {
+    font-size: 1.5em;
+}
+
 .wlink:hover {
     text-decoration: none;
     cursor: pointer;

@@ -5,6 +5,8 @@ import requests
 from flask import Flask, render_template, redirect, Markup, jsonify
 from bs4 import BeautifulSoup
 
+from pprint import pprint
+
 url = 'http://www.crossfitinvictus.com/category/wod/competition/'
 
 app = Flask(__name__)
@@ -85,7 +87,7 @@ API to get the workout markup.
 '''
 @app.route("/api/v1.0/workout/<string:date>", methods=['GET'])
 def get_workout(date):
-    return workouts[date]
+    return load_workout(date)
 
 
 '''

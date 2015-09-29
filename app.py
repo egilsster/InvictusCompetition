@@ -98,8 +98,7 @@ API to get the workout markup.
 
 @app.route("/api/workout/<string:date>", methods=['GET'])
 def get_workout(date):
-    dic = {"content": load_workout(date)}
-    return jsonify(dic)
+    return load_workout(date)
 
 
 '''

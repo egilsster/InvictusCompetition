@@ -96,7 +96,7 @@ API to get the workout markup.
 '''
 
 
-@app.route("/api/v1.0/workout/<string:date>", methods=['GET'])
+@app.route("/api/workout/<string:date>", methods=['GET'])
 def get_workout(date):
     return load_workout(date)
 
@@ -106,7 +106,7 @@ API to get the workout list.
 '''
 
 
-@app.route("/api/v1.0/workouts/<string:page>", methods=['GET'])
+@app.route("/api/workouts/<string:page>", methods=['GET'])
 def get_workouts(page):
     url_list = generate_list(url + 'page/' + page)
     dic = {
@@ -115,11 +115,11 @@ def get_workouts(page):
     }
 
     for date in url_list:
-        workoutObj = {
+        workout_obj = {
             "title": date,
             "url": workout_links[date]
         }
-        dic["workouts"].append(workoutObj)
+        dic["workouts"].append({"workout": workout_obj})
 
     return jsonify(dic)
 

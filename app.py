@@ -1,11 +1,9 @@
 #!/usr/bin/python
 # -*- coding: iso-8859-15 -*-
-import pdb
 import requests
 from flask import Flask, render_template, redirect, Markup, jsonify
 from bs4 import BeautifulSoup
 
-from pprint import pprint
 
 url = 'http://www.crossfitinvictus.com/category/wod/competition/'
 
@@ -16,38 +14,45 @@ workouts = {}
 '''
 Return the contents of the page.
 '''
-def load_url(url):
-    return requests.get(url).text
+
+
+def load_url(uri):
+    return requests.get(uri).text
 
 
 '''
 Fetches workout markup.
 '''
+
+
 def load_workout(date):
     if date not in workouts:
         data = requests.get(workout_links[date]).text
         html = BeautifulSoup(data)
 
         workout_markup = str(html('div', class_="entry")[0])
-        cutOff = workout_markup.find('<div class="divider">') # Remove info section below workout
-        workout_markup = workout_markup.replace(u'\xa0', u' ')[:cutOff].strip()
+        cut_off = workout_markup.find('<div class="divider">')  # Remove info section below workout
+        workout_markup = workout_markup.replace(u'\xa0', u' ')[:cut_off].strip()
 
         workouts[date] = workout_markup
 
     return workouts[date]
 
+
 '''
 Generates the list that contains the URLs to the workouts.
 This is linked with the title of the workout which is the date.
 '''
-def generate_list(url):
-    data = load_url(url)
+
+
+def generate_list(uri):
+    data = load_url(uri)
     soup = BeautifulSoup(data, "html.parser")
     links = soup('a', rel='bookmark')
     entries = []
 
     for x in links:
-        title = x.text[:x.text.find('Competition')-len(' - ')] # Cut off text after date
+        title = x.text[:x.text.find('Competition') - len(' - ')]  # Cut off text after date
         link = x['href']
         workout_links[title] = link
         entries.append(title)
@@ -58,6 +63,8 @@ def generate_list(url):
 '''
 Index is at page 1, so I redirect from root to there.
 '''
+
+
 @app.route("/")
 def workouts_list():
     return redirect("/page/1")
@@ -66,6 +73,8 @@ def workouts_list():
 '''
 Paging, to view more workouts if one desires.
 '''
+
+
 @app.route("/page/<pager>")
 def workouts_by_page(pager):
     paged_url = url + 'page/' + str(pager)
@@ -85,6 +94,8 @@ def view_workout(date):
 '''
 API to get the workout markup.
 '''
+
+
 @app.route("/api/v1.0/workout/<string:date>", methods=['GET'])
 def get_workout(date):
     return load_workout(date)
@@ -93,13 +104,22 @@ def get_workout(date):
 '''
 API to get the workout list.
 '''
+
+
 @app.route("/api/v1.0/workouts/<string:page>", methods=['GET'])
 def get_workouts(page):
-    list = generate_list(url + 'page/' + page)
-    dic = {}
+    url_list = generate_list(url + 'page/' + page)
+    dic = {
+        "workouts": [],
+        "page": page
+    }
 
-    for date in list:
-        dic[date] = workout_links[date]
+    for date in url_list:
+        workoutObj = {
+            "title": date,
+            "url": workout_links[date]
+        }
+        dic["workouts"].append(workoutObj)
 
     return jsonify(dic)
 

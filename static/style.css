@@ -1,23 +1,54 @@
-@media screen and (min-width: 600px) {
-    .workout {
-        margin-left: 20%;
-        margin-right: 20%;
-    }
-}
+@media (max-width: 600px) {
+  .container-fluid {
+    min-width: 300px; }
 
+  .workout {
+    margin-left: 0;
+    margin-right: 0; } }
+@media (min-width: 600px) {
+  .workout {
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px; } }
 body {
-    font-size: 1.5em;
-}
+  font-size: 1.5em;
+  background-color: #E5E5E5; }
 
-.wlink:hover {
-    text-decoration: none;
-    cursor: pointer;
-}
+td, .table thead > tr > th {
+  border-bottom: 1px solid #223537; }
 
-.nextbtn {
-    float: right;
-}
+.navbar {
+  background-color: #223537; }
 
-.pagenr {
-    text-align: center;
-}
+.navbar-header > .navbar-brand {
+  color: #E5E5E5; }
+
+.navbar-header > .navbar-brand:hover,
+.navbar-header > .navbar-brand:active,
+.navbar-header > .navbar-brand:focus {
+  color: #A3C4BC; }
+
+.workout_link {
+  color: #223537; }
+
+.workout_link:hover {
+  text-decoration: none;
+  color: #A3C4BC; }
+
+.next_btn {
+  float: right; }
+
+.page_nr {
+  text-align: center; }
+
+.btn-primary {
+  background-color: #223537;
+  border-color: #223537; }
+
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus {
+  background-color: #A3C4BC;
+  border-color: #A3C4BC; }
+
+/*# sourceMappingURL=style.css.map */

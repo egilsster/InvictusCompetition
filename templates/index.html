@@ -19,57 +19,43 @@
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/">CrossFit Invictus</a>
+                <a class="navbar-brand" href="/">Invictus Competition</a>
             </div>
-
-            <!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">Link</a></li>
-                </ul>
-            </div> -->
         </div>
     </nav>
 
     <div class="container-fluid workout">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Competition Workouts</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in result %}
+                <tr>
+                    <td>
+                        <a class="workout_link" href="/workout/{{ item }}">{{ item }}</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-xs-4">
+                {% if paging_left %}
+                <button type="button" id="prev" onclick="change_page('prev')" class="btn btn-primary">Prev</button>
+                {% endif %}
             </div>
-            <div class="panel-body">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for item in result %}
-                        <tr>
-                            <td>
-                                <a class="wlink" href="/workout/{{ item }}">{{ item }}</a>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-                <div class="row">
-                    <div class="col-xs-4">
-                        {% if paging_left %}
-                        <button type="button" id="prev" onclick="change_page('prev')" class="btn btn-primary">Prev</button>
-                        {% endif %}
-                    </div>
-                    <div class="col-xs-4">
-                        <p id="pager" class="pager">
-                            {{ page }}
-                        </p>
-                    </div>
-                    <div class="col-xs-4">
-                        {% if paging_right %}
-                        <button type="button" id="next" onclick="change_page('next')" class="btn btn-primary nextbtn">Next</button>
-                        {% endif %}
-                    </div>
-                </div>
+            <div class="col-xs-4">
+                <p id="pager" class="pager">
+                    {{ page }}
+                </p>
+            </div>
+            <div class="col-xs-4">
+                {% if paging_right %}
+                <button type="button" id="next" onclick="change_page('next')" class="btn btn-primary next_btn">Next</button>
+                {% endif %}
             </div>
         </div>
     </div>

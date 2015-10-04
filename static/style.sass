@@ -1,0 +1,61 @@
+$font-size: 1.5em
+$main-font-color: black
+$background-color: #E5E5E5
+$border-color: #E5E5E5
+$main-dark-color: #223537
+$main-light-color: #A3C4BC
+
+@media (max-width: 600px)
+    .container-fluid
+        min-width: 300px
+
+    .workout
+        margin-left: 0
+        margin-right: 0
+
+@media (min-width: 600px)
+    .workout
+        margin-left: auto
+        margin-right: auto
+        width: 600px
+    
+body
+    font-size: $font-size
+    background-color: $background-color
+
+td, .table thead > tr > th
+    border-bottom: 1px solid $main-dark-color
+
+.navbar
+    background-color: $main-dark-color
+
+.navbar-header > .navbar-brand
+    color: $border-color
+
+.navbar-header > .navbar-brand:hover,
+.navbar-header > .navbar-brand:active,
+.navbar-header > .navbar-brand:focus
+    color: $main-light-color
+
+.workout_link
+    color: #223537
+
+.workout_link:hover
+    text-decoration: none
+    color: $main-light-color
+
+.next_btn
+    float: right
+
+.page_nr
+    text-align: center
+
+.btn-primary
+    background-color: $main-dark-color
+    border-color: $main-dark-color
+
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus
+    background-color: $main-light-color
+    border-color: $main-light-color

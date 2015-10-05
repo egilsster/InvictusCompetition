@@ -28,7 +28,7 @@ Fetches workout markup.
 def load_workout(date):
     if date not in workouts:
         data = requests.get(workout_links[date]).text
-        html = BeautifulSoup(data)
+        html = BeautifulSoup(data, "html.parser")
 
         workout_markup = str(html('div', class_="entry")[0])
         cut_off = workout_markup.find('<div class="divider">')  # Remove info section below workout

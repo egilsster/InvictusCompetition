@@ -10,11 +10,18 @@
     margin-left: auto;
     margin-right: auto;
     width: 600px; } }
+.workout {
+  margin-bottom: 50px; }
+
 body {
   font-size: 1.5em;
-  background-color: #E5E5E5; }
+  background-color: #E5E5E5;
+  color: black; }
 
 td, .table thead > tr > th {
+  border-bottom: 1px solid #223537; }
+
+h3 {
   border-bottom: 1px solid #223537; }
 
 .navbar {
